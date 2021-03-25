@@ -13,7 +13,7 @@ public class JcmTest {
         Variable par = new Variable("a");
         parser.add(var);
         parser.add(par);
-        String funStr = "sin(a*x)/x";
+        String funStr = "exp(-x^2)*sin(x)";
         Expression fun = parser.parse(funStr);
         Expression der = fun.derivative(var);
         System.out.println("f(x) = " + fun.toString());
@@ -23,8 +23,7 @@ public class JcmTest {
             var.setVal(x);
             System.out.println(x + "\t" + fun.getVal() + "\t" + der.getVal());
         }
-        parser.remove("a");
-        funStr = "sin(x)/x";
+        funStr = "exp(-a*x^2)*sin(x)";
         fun = parser.parse(funStr);
         der = fun.derivative(var);
         System.out.println("f(x) = " + fun.toString());

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Lab_3</artifactId>
+    <artifactId>Lab_Serializable</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

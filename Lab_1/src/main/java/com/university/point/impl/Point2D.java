@@ -63,7 +63,6 @@ public class Point2D extends Point implements Comparable<Point2D> {
 
     @Override
     public int compareTo(Point2D o) {
-
         return Double.compare(getX(), o.getX());
     }
 

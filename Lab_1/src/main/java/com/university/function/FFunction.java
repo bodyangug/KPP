@@ -13,7 +13,7 @@ public class FFunction implements Evaluatable {
     @Override
     public double evalf(double x) {
         // TODO Auto-generated method stub
-        return Math.exp(-a * x * x) * Math.sin(x);
+        return Math.exp(x * x) * Math.sin(x);
     }
 
     public double getA() {
