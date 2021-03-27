@@ -1,3 +1,5 @@
+package fourth;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Executable;
 import java.lang.reflect.InvocationTargetException;
@@ -6,12 +8,33 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ClassManager {
+    public static Scanner in = new Scanner(System.in);
     private Class cls;
     private Object classObject;
-    public static Scanner in = new Scanner(System.in);
 
     public ClassManager(String cls) throws ClassNotFoundException {
         this.cls = Class.forName(cls);
+    }
+
+    public static void main(String[] args) {
+        ClassManager classManager;
+        Scanner in = new Scanner(System.in);
+        try {
+            System.out.print("Введите полное название класса, объект котоого хотите создать: ");
+            String className = in.next();
+            classManager = new ClassManager(className);
+            classManager.newInstance();
+
+            while (true)
+                classManager.chooseMethods();
+
+        } catch (ClassNotFoundException e) {
+            System.out.println("Клас не найден");
+        } catch (InvocationTargetException | InstantiationException | IllegalAccessException e) {
+            System.out.println("Ошибка при вызове метода или конструктора. Перезапустите программу.");
+        } catch (NoSuchElementException e) {
+            System.out.println("\nОшибка в сканере. Нет элементтов для считывания.");
+        }
     }
 
     private boolean isSimpleType(Class classObject) {
@@ -106,26 +129,5 @@ public class ClassManager {
 
     public Object getObject() {
         return classObject;
-    }
-
-    public static void main(String[] args) {
-        ClassManager classManager;
-        Scanner in = new Scanner(System.in);
-        try {
-            System.out.print("Введите полное название класса, объект котоого хотите создать: ");
-            String className = in.next();
-            classManager = new ClassManager(className);
-            classManager.newInstance();
-
-            while (true)
-                classManager.chooseMethods();
-
-        } catch (ClassNotFoundException e) {
-            System.out.println("Клас не найден");
-        } catch (InvocationTargetException | InstantiationException | IllegalAccessException e) {
-            System.out.println("Ошибка при вызове метода или конструктора. Перезапустите программу.");
-        } catch (NoSuchElementException e) {
-            System.out.println("\nОшибка в сканере. Нет элементтов для считывания.");
-        }
     }
 }

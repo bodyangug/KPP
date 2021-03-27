@@ -7,8 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Practice_reflection" />
-        <module name="Lab_Serializable" />
         <module name="Lab_1" />
+        <module name="Lab_Serializable" />
+        <module name="Task_1" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

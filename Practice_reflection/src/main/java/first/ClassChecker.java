@@ -1,3 +1,5 @@
+package first;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -5,7 +7,7 @@ import java.lang.reflect.Modifier;
 import java.util.Scanner;
 
 public class ClassChecker {
-    public static String checkModifiers(Class myClass){
+    public static String checkModifiers(Class myClass) {
         String result = "";
         int mods = myClass.getModifiers();
         if (Modifier.isPublic(mods))
@@ -21,14 +23,14 @@ public class ClassChecker {
         return result;
     }
 
-    public static String checkSuperclass(Class myClass){
+    public static String checkSuperclass(Class myClass) {
         String superClass = myClass.getSuperclass().getSimpleName();
         return " extends " + superClass;
     }
 
-    public static String checkInterfaces(Class myClass){
+    public static String checkInterfaces(Class myClass) {
         String result = "";
-        Class [] interfaces = myClass.getInterfaces();
+        Class[] interfaces = myClass.getInterfaces();
 
         if (interfaces.length > 0) {
             result = " implements ";
@@ -38,25 +40,37 @@ public class ClassChecker {
             result += interfaces[interfaces.length - 1];
         }
 
-            return result;
+        return result;
     }
 
-    public static void checkConstructors(Class myClass){
+    public static String checkConstructors(Class myClass) {
+        StringBuilder res = new StringBuilder("\nКонструкторы: \r\n");
         System.out.println("\nКонструкторы: ");
-        for (Constructor constructor : myClass.getDeclaredConstructors())
+        for (Constructor constructor : myClass.getDeclaredConstructors()) {
             System.out.println("   * " + constructor);
+            res.append(constructor).append("\r\n");
+        }
+        return res.toString();
     }
 
-    public static void checkMethods(Class myClass){
+    public static String checkMethods(Class myClass) {
+        StringBuilder res = new StringBuilder("\nМетоды: \r\n");
         System.out.println("\nМетоды: ");
-        for (Method methods : myClass.getDeclaredMethods())
+        for (Method methods : myClass.getDeclaredMethods()) {
             System.out.println("   * " + methods);
+            res.append(methods).append("\r\n");
+        }
+        return res.toString();
     }
 
-    public static void checkFields(Class myClass){
+    public static String checkFields(Class myClass) {
+        StringBuilder res = new StringBuilder("\nПоля: \r\n");
         System.out.println("\nПоля: ");
-        for(Field field : myClass.getDeclaredFields())
+        for (Field field : myClass.getDeclaredFields()) {
             System.out.println("   * " + field);
+            res.append(field).append("\r\n");
+        }
+        return res.toString();
     }
 
     public static void main(String[] args) {
