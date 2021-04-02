@@ -18,11 +18,11 @@ public class UserSecretInfo implements Externalizable {
         this.superSecretInformation = superSecretInformation;
     }
 
-    public Book getBook() {
-        return book;
+    public UserSecretInfo() {
     }
 
-    public UserSecretInfo() {
+    public Book getBook() {
+        return book;
     }
 
     @Override

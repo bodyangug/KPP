@@ -41,18 +41,19 @@ public class BookCase implements Serializable {
                 '}';
     }
 
-    private void writeObject(ObjectOutputStream out)throws IOException{
+    private void writeObject(ObjectOutputStream out) throws IOException {
         System.out.println("BookCase writeObject");
         out.defaultWriteObject();
         out.writeObject(readerInfo);
 
     }
+
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         System.out.println("BookCase readObject");
         // deserialize the non-transient data members first;
         in.defaultReadObject();
         // Read the readerInfo
-        setReaderInfo((ReaderInfo)in.readObject());
+        setReaderInfo((ReaderInfo) in.readObject());
 
     }
 }

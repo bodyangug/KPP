@@ -2,7 +2,7 @@ package com.company.People;
 
 import java.io.Serializable;
 
-public class ReaderInfo implements Serializable{
+public class ReaderInfo implements Serializable {
 
     private String readerName;
 

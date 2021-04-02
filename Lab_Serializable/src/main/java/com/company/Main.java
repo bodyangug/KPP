@@ -39,7 +39,7 @@ public class Main {
                     methods.doSerialize(saved, fileForSerialize);
                     System.out.println("time serialize " + (System.nanoTime() - time));
                 }
-                ;
+                break;
                 case 2: {
                     long time = System.nanoTime();
 
@@ -48,6 +48,7 @@ public class Main {
                     System.out.println("time deserialize " + (double) (System.nanoTime() - time));
                     System.out.println(saved);
                 }
+                break;
                 case 3: {
                     long time = System.nanoTime();
 
@@ -58,6 +59,7 @@ public class Main {
                     methods.doSerialize(userInfo, fileForExternalize);
                     System.out.println("Time externalize " + (System.nanoTime() - time));
                 }
+                break;
                 case 4: {
                     long time = System.nanoTime();
 
@@ -66,6 +68,7 @@ public class Main {
                     System.out.println("Time  " + (System.nanoTime() - time));
                     System.out.println(userInfo);
                 }
+                break;
                 case 5:
                     return;
 
