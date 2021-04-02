@@ -14,8 +14,8 @@ public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
         Methods methods = new Methods();
-        String fileForSerialize = Main.class.getClassLoader().getResource("SerializedFiles/save.ser").getPath();
-        String fileForExternalize = "SerializedFiles/saveExtern.ser";
+        String fileForSerialize = Thread.currentThread().getContextClassLoader().getResource("SerializedFiles/save.ser").getPath();
+        String fileForExternalize = Thread.currentThread().getContextClassLoader().getResource("SerializedFiles/saveExtern.ser").getPath();
         ReaderInfo readerInfo = new ReaderInfo("Ivanov Ivan Ivanovich");
 
         Scanner sc = new Scanner(System.in);
