@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="windows-1251" ?>
-<!DOCTYPE datasheet SYSTEM "C:\my\KPP\Lab_Java_XML\src\main\resources\data\validation.dtd">
+<!DOCTYPE datasheet SYSTEM "data\validation.dtd">
 <datasheet>
     <data date="10.03.2015">
         <x>1.1</x>

@@ -18,7 +18,7 @@ public class Formula {
         double sqx = 0;
         double summasqx = 0;
         double k = 0;
-        // double b=0;
+         double b=0;
         for (int i = 0; i < hrn.size(); i++) {
             double x = hrn.get(i).getX();
             double y = hrn.get(i).getY();
@@ -28,10 +28,10 @@ public class Formula {
             sqx = square(x);
             summasqx = summasqx + sqx;
             k = ((hrn.size() + 1) * (summaxy - (summax * summay)) / ((hrn.size() + 1) * summasqx) - square(summax));
-            //  b = y - k*x;
+              b = y - k*x;
         }
         System.out.println("your k ------------ " + k);
-        // System.out.println("your b ------------ "+b);
+         System.out.println("your b ------------ "+b);
 
     }
 
