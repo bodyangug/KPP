@@ -11,6 +11,9 @@
         <module name="Lab_Serializable" />
         <module name="Task_1" />
         <module name="Lab_Java_XML" />
+        <module name="NET_UDP_SOCKETS" />
+        <module name="NET_TCP_SOCKETS" />
+        <module name="Java_Beans" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

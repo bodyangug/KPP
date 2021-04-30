@@ -14,6 +14,9 @@
         <module>Lab_3</module>
         <module>Lab_Serializable</module>
         <module>Lab_Java_XML</module>
+        <module>Java_Beans</module>
+        <module>NET_TCP_SOCKETS</module>
+        <module>NET_UDP_SOCKETS</module>
     </modules>
 
 
