@@ -25,7 +25,7 @@ public class SomeClass {
     }
 
     public void something(String argument) {
-        System.out.println("this method work with argument " + argument);
+        System.out.println("this method work with argument == " + argument);
     }
 
 }

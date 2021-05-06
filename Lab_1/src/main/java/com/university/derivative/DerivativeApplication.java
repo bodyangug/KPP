@@ -5,7 +5,6 @@ import com.university.Evaluatable;
 import com.university.function.FFunction;
 import com.university.interpolation.impl.FileListInterpolation;
 import com.university.interpolation.impl.TreeMapInterpolation;
-import com.university.interpolation.impl.TreeSetInterpolation;
 import com.university.num_methods.NumMethods;
 import com.university.solve.SolveEqFunction;
 

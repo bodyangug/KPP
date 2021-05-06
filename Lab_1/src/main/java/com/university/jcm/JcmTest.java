@@ -6,7 +6,6 @@ import edu.hws.jcm.data.Variable;
 
 public class JcmTest {
 
-
     public static void main(String[] args) {
         Parser parser = new Parser(Parser.STANDARD_FUNCTIONS);
         Variable var = new Variable("x");
