@@ -12,7 +12,6 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-
         Methods methods = new Methods();
         String fileForSerialize = Thread.currentThread().getContextClassLoader().getResource("SerializedFiles/save.ser").getPath();
         String fileForExternalize = Thread.currentThread().getContextClassLoader().getResource("SerializedFiles/saveExtern.ser").getPath();
@@ -42,43 +41,33 @@ public class Main {
                 break;
                 case 2: {
                     long time = System.nanoTime();
-
                     BookCase saved = (BookCase) methods.unSerialize(fileForSerialize);
-
                     System.out.println("time deserialize " + (double) (System.nanoTime() - time));
                     System.out.println(saved);
                 }
                 break;
                 case 3: {
                     long time = System.nanoTime();
-
                     String somesecret = "some passport data";
                     Book book = new Book("War and world");
                     UserSecretInfo userInfo = new UserSecretInfo(book, somesecret);
-
                     methods.doSerialize(userInfo, fileForExternalize);
                     System.out.println("Time externalize " + (System.nanoTime() - time));
                 }
                 break;
                 case 4: {
                     long time = System.nanoTime();
-
                     UserSecretInfo userInfo = (UserSecretInfo) methods.unSerialize(fileForExternalize);
-
                     System.out.println("Time  " + (System.nanoTime() - time));
                     System.out.println(userInfo);
                 }
                 break;
                 case 5:
                     return;
-
                 default:
                     throw new IllegalStateException("Unexpected value: " + choice);
             }
 
         }
-
-
     }
-
 }

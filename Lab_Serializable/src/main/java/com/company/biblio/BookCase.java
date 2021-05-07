@@ -45,7 +45,6 @@ public class BookCase implements Serializable {
         System.out.println("BookCase writeObject");
         out.defaultWriteObject();
         out.writeObject(readerInfo);
-
     }
 
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {

@@ -9,7 +9,6 @@ import java.io.ObjectOutput;
 import java.util.Base64;
 
 public class UserSecretInfo implements Externalizable {
-
     private Book book;
     private String superSecretInformation;
 
