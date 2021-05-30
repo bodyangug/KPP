@@ -1,4 +1,4 @@
-package com.lab.aseev.tcp.Operations;
+package com.lab.aseev.tcp.metro.Operations;
 
 public class RemoveCardOperation extends CardOperation {
     private String serialNumber;

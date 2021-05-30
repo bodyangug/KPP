@@ -18,7 +18,7 @@ public class MainFrame extends JFrame {
     }
 
     public void initMainFrame(){
-        setTitle("Лаба 5");
+        setTitle("Лаба 6,7");
         setLayout(new BorderLayout());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(600, 400);

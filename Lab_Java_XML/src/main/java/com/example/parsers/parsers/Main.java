@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static final IValidator validator = new XMLInputParser();
+    private static final IValidator validator = new SaxParser();
 
     public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException {
 

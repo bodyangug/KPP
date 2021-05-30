@@ -2,8 +2,6 @@ package com.lab.aseev.beans;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class DataSheetTable extends JPanel{
@@ -44,23 +42,20 @@ public class DataSheetTable extends JPanel{
         panelWithButtons.add(addButton);
         Random r = new Random();
 
-        addButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Data data = getRandomData();
+        addButton.addActionListener(e -> {
+            Data data = getRandomData();
 
-                if (dataSheetTableModel.isEmpty()) {
-                    dataSheetTableModel.getDataSheet().getDataItem(0).setDate(data.getDate());
-                    dataSheetTableModel.getDataSheet().getDataItem(0).setX(data.getX());
-                    dataSheetTableModel.getDataSheet().getDataItem(0).setY(data.getY());
-                } else
-                    dataSheetTableModel.getDataSheet().addData(data);
+            if (dataSheetTableModel.isEmpty()) {
+                dataSheetTableModel.getDataSheet().getDataItem(0).setDate(data.getDate());
+                dataSheetTableModel.getDataSheet().getDataItem(0).setX(data.getX());
+                dataSheetTableModel.getDataSheet().getDataItem(0).setY(data.getY());
+            } else
+                dataSheetTableModel.getDataSheet().addData(data);
 
-                dataTable.repaint();
-                dataSheetTableModel.setRowCount(dataSheetTableModel.getDataSheet().dataCount());
-                revalidate();
-                dataSheetTableModel.fireDataSheetChanges();
-            }
+            dataTable.repaint();
+            dataSheetTableModel.setRowCount(dataSheetTableModel.getDataSheet().dataCount());
+            revalidate();
+            dataSheetTableModel.fireDataSheetChanges();
         });
     }
 
@@ -72,27 +67,24 @@ public class DataSheetTable extends JPanel{
         return new Data(x, y, date);
     }
 
-    private void initDeleteButton(){
+    private void initDeleteButton() {
         deleteButton = new JButton("Delete (-)");
         panelWithButtons.add(deleteButton);
-        deleteButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (dataSheetTableModel.getRowCount() > 1){
-                    dataSheetTableModel.setRowCount(dataSheetTableModel.getRowCount() - 1);
-                    dataSheetTableModel.getDataSheet().removeData(dataSheetTableModel.getDataSheet().dataCount() - 1);
+        deleteButton.addActionListener(e -> {
+            if (dataSheetTableModel.getRowCount() > 1) {
+                dataSheetTableModel.setRowCount(dataSheetTableModel.getRowCount() - 1);
+                dataSheetTableModel.getDataSheet().removeData(dataSheetTableModel.getDataSheet().dataCount() - 1);
 
-                } else {
-                    dataSheetTableModel.getDataSheet().getDataItem(0).setDate("");
-                    dataSheetTableModel.getDataSheet().getDataItem(0).setX(0);
-                    dataSheetTableModel.getDataSheet().getDataItem(0).setY(0);
-                }
-
-                dataTable.revalidate();
-                dataTable.repaint();
-                dataSheetTableModel.fireDataSheetChanges();
-                repaint();
+            } else {
+                dataSheetTableModel.getDataSheet().getDataItem(0).setDate("");
+                dataSheetTableModel.getDataSheet().getDataItem(0).setX(0);
+                dataSheetTableModel.getDataSheet().getDataItem(0).setY(0);
             }
+
+            dataTable.revalidate();
+            dataTable.repaint();
+            dataSheetTableModel.fireDataSheetChanges();
+            repaint();
         });
     }
 

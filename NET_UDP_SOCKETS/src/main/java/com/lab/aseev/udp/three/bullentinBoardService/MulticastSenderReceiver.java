@@ -8,13 +8,12 @@ import java.net.MulticastSocket;
 import java.util.Scanner;
 
 public class MulticastSenderReceiver {
-    private String name;
+    private final String name;
     private InetAddress address;
-    private int port = 3456;
+    private final int port = 3456;
     private MulticastSocket group;
 
-    MulticastSenderReceiver(String name)
-    {
+    MulticastSenderReceiver(String name) {
         this.name = name;
         System.out.println("name = "+name);
         try{
@@ -22,33 +21,25 @@ public class MulticastSenderReceiver {
             group = new MulticastSocket(port);
             new Receiver().start();
             new Sender().start();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-
     private class Sender extends Thread {
-
         @Override
         public void run() {
-
             try{
                 BufferedReader fromUser = new BufferedReader(new InputStreamReader(System.in));
-
-                while(true)
-                {
+                while(true) {
                     String message = name + ": "+fromUser.readLine();
                     byte[] out = message.getBytes();
                     DatagramPacket packet = new DatagramPacket(out, out.length, address, port);
                     group.send(packet);
                 }
-
-            } catch (Exception e){}
+            } catch (Exception ignored){}
         }
     }
-
     private class Receiver extends Thread{
         @Override
         public void run() {
@@ -56,27 +47,17 @@ public class MulticastSenderReceiver {
                 byte[] in = new byte[256];
                 DatagramPacket packet = new DatagramPacket(in, in.length);
                 group.joinGroup(address);
-
-                while(true)
-                {
+                while(true) {
                     group.receive(packet);
                     System.out.println(new String(packet.getData(), 0,packet.getLength()));
                 }
-
-            } catch (Exception e){}
+            } catch (Exception ignored){}
         }
     }
-
-
     public static void main(String[] args) {
-      // new MulticastSenderReceiver(args[0]);
-      // new MulticastSenderReceiver(new Scanner(System.in).next());
-
        Scanner sc = new Scanner(System.in);
        String name = sc.nextLine();
 
        new MulticastSenderReceiver(name);
     }
-
-
 }

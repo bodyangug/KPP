@@ -1,15 +1,15 @@
-package com.lab.aseev.tcp.Operations;
+package com.lab.aseev.tcp.metro.Operations;
 
-public class PayMoneyOperation extends CardOperation {
-    public String serialNumber;
-    public double money;
+public class AddMoneyOperation extends CardOperation {
+    private String serialNumber;
+    private double money;
 
-    public PayMoneyOperation(String serialNumber, double money) {
+    public AddMoneyOperation(String serialNumber, double money) {
         this.serialNumber = serialNumber;
         this.money = money;
     }
 
-    public PayMoneyOperation() {
+    public AddMoneyOperation() {
         this("Untitled", 0);
     }
 

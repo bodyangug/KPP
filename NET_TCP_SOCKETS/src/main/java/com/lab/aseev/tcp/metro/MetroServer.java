@@ -1,6 +1,6 @@
-package com.lab.aseev.tcp;
+package com.lab.aseev.tcp.metro;
 
-import com.lab.aseev.tcp.entity.MetroCardBank;
+import com.lab.aseev.tcp.metro.entity.MetroCardBank;
 
 import java.io.IOException;
 import java.net.ServerSocket;

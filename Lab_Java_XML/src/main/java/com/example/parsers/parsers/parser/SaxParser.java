@@ -19,12 +19,12 @@ public class SaxParser implements IValidator {
         SAXParserFactory factory = SAXParserFactory.newInstance();
 
         SAXParser saxParser = factory.newSAXParser();
-        Repo hren = new Repo();
-        DefaultHandler handler = new DataHandler(hren);
+        Repo repo = new Repo();
+        DefaultHandler handler = new DataHandler(repo);
         InputStream xmlInput = new FileInputStream(documentPath);
         saxParser.parse(xmlInput, handler);
 
-        System.out.println(hren);
+        System.out.println(repo);
     }
 
 }

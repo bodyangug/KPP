@@ -7,7 +7,6 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 
 public abstract class UDPServer implements Runnable {
-
     private final int bufferSize;
     private final int port;
 
@@ -26,7 +25,6 @@ public abstract class UDPServer implements Runnable {
 
     @Override
     public void run() {
-        // TODO Auto-generated method stub
         byte[] buffer = new byte[bufferSize];
         try (DatagramSocket socket = new DatagramSocket(port)) {
             socket.setSoTimeout(10000);
@@ -48,17 +46,10 @@ public abstract class UDPServer implements Runnable {
         } catch (SocketException ex) {
             System.err.println("Could not bind to port: " + port + "\n" + ex);
         }
-
     }
-
     public void shutDown() {
         this.isShutDown = true;
     }
-
     public abstract void respond(DatagramSocket socket, DatagramPacket request)
             throws IOException;
-
-
-
 }
-

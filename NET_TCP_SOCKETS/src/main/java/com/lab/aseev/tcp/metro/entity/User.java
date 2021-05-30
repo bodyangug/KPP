@@ -1,4 +1,4 @@
-package com.lab.aseev.tcp.entity;
+package com.lab.aseev.tcp.metro.entity;
 
 import java.io.Serializable;
 import java.text.DateFormat;
@@ -28,11 +28,6 @@ public class User implements Serializable {
 
     public User() {
         this("Untitled", "Untitled", "Untitled", DEFAULT_BIRTHDAY);
-    }
-
-    public static void main(String[] args) {
-        User user = new User();
-        System.out.println(user);
     }
 
     public String toString() {

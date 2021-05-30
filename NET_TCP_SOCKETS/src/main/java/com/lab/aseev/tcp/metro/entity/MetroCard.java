@@ -1,4 +1,4 @@
-package com.lab.aseev.tcp.entity;
+package com.lab.aseev.tcp.metro.entity;
 
 import java.io.Serializable;
 
@@ -16,11 +16,6 @@ public class MetroCard implements Serializable {
 
     public MetroCard() {
         this("Untitled", new User(), "Untitled");
-    }
-
-    public static void main(String[] args) {
-        MetroCard metroCard = new MetroCard();
-        System.out.println(metroCard);
     }
 
     public String getSerialNumber() {
@@ -56,8 +51,7 @@ public class MetroCard implements Serializable {
     }
 
     public String toString() {
-        return "№: " + serialNumber + "\n<Пользователь>\n" +
-                user + "\n" +
+        return "№: " + serialNumber + "\n<Пользователь>\n" + user + "\n" +
                 "Карточка выдана университетом: " + university + "\n" +
                 "Доступные средства: " + balance + " $";
     }

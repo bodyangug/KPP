@@ -1,14 +1,14 @@
-package com.lab.aseev.tcp;
+package com.lab.aseev.tcp.metro;
 
 
-import com.lab.aseev.tcp.Operations.AddMetroCardOperation;
-import com.lab.aseev.tcp.Operations.AddMoneyOperation;
-import com.lab.aseev.tcp.Operations.GetCardInfoOperation;
-import com.lab.aseev.tcp.Operations.PayMoneyOperation;
-import com.lab.aseev.tcp.Operations.RemoveCardOperation;
-import com.lab.aseev.tcp.Operations.ShowBalanceOperation;
-import com.lab.aseev.tcp.Operations.StopOperation;
-import com.lab.aseev.tcp.entity.MetroCardBank;
+import com.lab.aseev.tcp.metro.Operations.AddMetroCardOperation;
+import com.lab.aseev.tcp.metro.Operations.AddMoneyOperation;
+import com.lab.aseev.tcp.metro.Operations.GetCardInfoOperation;
+import com.lab.aseev.tcp.metro.Operations.PayMoneyOperation;
+import com.lab.aseev.tcp.metro.Operations.RemoveCardOperation;
+import com.lab.aseev.tcp.metro.Operations.ShowBalanceOperation;
+import com.lab.aseev.tcp.metro.Operations.StopOperation;
+import com.lab.aseev.tcp.metro.entity.MetroCardBank;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

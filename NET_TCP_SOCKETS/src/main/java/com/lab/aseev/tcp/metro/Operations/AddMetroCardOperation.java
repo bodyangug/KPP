@@ -1,7 +1,7 @@
-package com.lab.aseev.tcp.Operations;
+package com.lab.aseev.tcp.metro.Operations;
 
 
-import com.lab.aseev.tcp.entity.MetroCard;
+import com.lab.aseev.tcp.metro.entity.MetroCard;
 
 public class AddMetroCardOperation extends CardOperation {
     private MetroCard metroCard;

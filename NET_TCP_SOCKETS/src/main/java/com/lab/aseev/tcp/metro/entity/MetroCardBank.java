@@ -1,6 +1,4 @@
-package com.lab.aseev.tcp.entity;
-
-import com.lab.aseev.tcp.entity.MetroCard;
+package com.lab.aseev.tcp.metro.entity;
 
 import java.util.HashMap;
 
