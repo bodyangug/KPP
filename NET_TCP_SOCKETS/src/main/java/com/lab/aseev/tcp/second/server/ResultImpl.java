@@ -5,11 +5,11 @@ import com.lab.aseev.tcp.second.interfaces.Result;
 
 import java.io.Serializable;
 
-public class ResultImpl implements Result,Serializable {
+public class ResultImpl implements Result, Serializable {
     private Object output;
     private double scoreTime;
 
-    public ResultImpl(Object o,double c){
+    public ResultImpl(Object o, double c) {
         this.output = o;
         this.scoreTime = c;
     }
@@ -21,6 +21,6 @@ public class ResultImpl implements Result,Serializable {
 
     @Override
     public double scoreTime() {
-        return this.scoreTime ;
+        return this.scoreTime;
     }
 }

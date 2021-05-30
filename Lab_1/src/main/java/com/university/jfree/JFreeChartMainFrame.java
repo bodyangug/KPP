@@ -25,20 +25,6 @@ public class JFreeChartMainFrame extends JFrame {
     private XYSeries series;
 
     /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                JFreeChartMainFrame frame = new JFreeChartMainFrame();
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
-    /**
      * Create the frame.
      */
     public JFreeChartMainFrame() {
@@ -98,6 +84,20 @@ public class JFreeChartMainFrame extends JFrame {
         JFreeChart chart = createChart();
         ChartPanel chartPanel = new ChartPanel(chart);
         contentPane.add(chartPanel, BorderLayout.CENTER);
+    }
+
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(() -> {
+            try {
+                JFreeChartMainFrame frame = new JFreeChartMainFrame();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private double f(double a, double x) {

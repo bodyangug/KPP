@@ -1,7 +1,8 @@
 package com.lab.aseev.udp.two.echoServer;
 
-import java.io.*;
-import java.net.*;
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 
 public class UDPEchoServer extends UDPServer {
 
@@ -11,13 +12,6 @@ public class UDPEchoServer extends UDPServer {
         super(DEFAULT_PORT);
     }
 
-    @Override
-    public void respond(DatagramSocket socket, DatagramPacket request) throws IOException {
-
-        DatagramPacket reply = new DatagramPacket(request.getData(),
-                request.getLength(), request.getAddress(), request.getPort());
-        socket.send(reply);
-    }
     public static void main(String[] args) {
 
         UDPServer server = new UDPEchoServer();
@@ -32,6 +26,14 @@ public class UDPEchoServer extends UDPServer {
         }
         server.shutDown();
         System.out.println("Finish echo-server...");
+    }
+
+    @Override
+    public void respond(DatagramSocket socket, DatagramPacket request) throws IOException {
+
+        DatagramPacket reply = new DatagramPacket(request.getData(),
+                request.getLength(), request.getAddress(), request.getPort());
+        socket.send(reply);
     }
 
 }

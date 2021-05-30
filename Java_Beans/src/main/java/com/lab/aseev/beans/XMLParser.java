@@ -4,19 +4,29 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
-import javax.xml.parsers.*;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class XMLParser {
     public static Document document;
 
-    public static DataSheet parseXMLToDataSheet(String filePath){
+    public static DataSheet parseXMLToDataSheet(String filePath) {
         SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
         try {
             SAXParser saxParser = saxParserFactory.newSAXParser();
@@ -32,12 +42,12 @@ public class XMLParser {
         return null;
     }
 
-    public static void parseDataSheetToXML(DataSheet dataSheet, String fileName){
+    public static void parseDataSheetToXML(DataSheet dataSheet, String fileName) {
         parseDataSheetToDocument(dataSheet);
         saveDocument(fileName);
     }
 
-    private static void parseDataSheetToDocument(DataSheet dataSheet){
+    private static void parseDataSheetToDocument(DataSheet dataSheet) {
         createDocument();
         Element datasheet = document.createElement("datasheet");
         document.appendChild(datasheet);
@@ -59,7 +69,7 @@ public class XMLParser {
         addElement(b);
     }
 
-    private static Element newElement(String date, double x, double y){
+    private static Element newElement(String date, double x, double y) {
         Element data = document.createElement("data");
         Attr attr = document.createAttribute("date");
         attr.setValue(date.trim());
@@ -76,7 +86,7 @@ public class XMLParser {
         return data;
     }
 
-    private static void createDocument(){
+    private static void createDocument() {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder;
         try {
@@ -87,11 +97,11 @@ public class XMLParser {
         }
     }
 
-    private static void addElement(Element data){
+    private static void addElement(Element data) {
         document.getDocumentElement().appendChild(data);
     }
 
-    private static void saveDocument(String filePath){
+    private static void saveDocument(String filePath) {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         try {
             Transformer transformer = transformerFactory.newTransformer();

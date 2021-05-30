@@ -2,8 +2,8 @@ package com.university.num_methods;
 
 
 import com.university.Evaluatable;
-import com.university.point.impl.Point2D;
 import com.university.interpolation.impl.ListInterpolation;
+import com.university.point.impl.Point2D;
 
 public class NumMethods {
     private NumMethods() {

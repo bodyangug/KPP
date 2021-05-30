@@ -38,6 +38,13 @@ public class UDPEchoClient {
         private final DatagramSocket socket;
         private volatile boolean stopped = false;
 
+        SenderThread(DatagramSocket socket, InetAddress address, int port) {
+            this.server = address;
+            this.port = port;
+            this.socket = socket;
+            this.socket.connect(server, port);
+        }
+
         @Override
         public void run() {
             try {
@@ -61,12 +68,7 @@ public class UDPEchoClient {
                 System.err.println(ex);
             }
         }
-        SenderThread(DatagramSocket socket, InetAddress address, int port) {
-            this.server = address;
-            this.port = port;
-            this.socket = socket;
-            this.socket.connect(server, port);
-        }
+
         public void halt() {
             this.stopped = true;
         }
@@ -99,6 +101,7 @@ public class UDPEchoClient {
                 }
             }
         }
+
         public void halt() {
             this.stopped = true;
         }

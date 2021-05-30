@@ -9,7 +9,7 @@ public class User implements Serializable {
     private int port;
     private InetAddress address;
 
-    public User(InetAddress address, int port){
+    public User(InetAddress address, int port) {
         this.port = port;
         this.address = address;
     }
@@ -30,11 +30,11 @@ public class User implements Serializable {
         this.address = address;
     }
 
-    public String toString(){
+    public String toString() {
         return "Address: " + address.getCanonicalHostName() + ", port: " + port;
     }
 
-    public boolean equals(User user){
+    public boolean equals(User user) {
         return port == user.getPort() && address.getCanonicalHostName().equals(user.getAddress().getCanonicalHostName());
     }
 }

@@ -3,23 +3,27 @@ package com.lab.aseev.udp.one;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.net.*;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.util.Scanner;
 
 public class UDPClient {
+    private static final int answerWaitingTime = 1000;
     private Scanner scanner = new Scanner(System.in);
     private ActiveUsers activeUsersList;
     private DatagramSocket datagramSocket;
     private DatagramPacket datagramPacket;
     private InetAddress serverAddress;
     private int serverPort = -1;
-    private static final int answerWaitingTime = 1000;
     private int bufferSize = 256;
 
-    public UDPClient(InetAddress serverAddress, int serverPort){
+    public UDPClient(InetAddress serverAddress, int serverPort) {
         activeUsersList = new ActiveUsers();
         this.serverPort = serverPort;
-        try{
+        try {
             this.serverAddress = serverAddress;
             datagramSocket = new DatagramSocket(64344);
             datagramSocket.setSoTimeout(answerWaitingTime);
@@ -28,7 +32,12 @@ public class UDPClient {
         }
     }
 
-    public void checkServerTurningOff(int normalBufferSize){
+    public static void main(String[] args) throws Exception {
+        UDPClient udpClient = new UDPClient(InetAddress.getLocalHost(), 1502);
+        udpClient.work(256);
+    }
+
+    public void checkServerTurningOff(int normalBufferSize) {
         System.out.print("Вы хотите выключить сервер после получения данных? [1 - да, 2 - нет] -> ");
         int choice = scanner.nextInt();
 
@@ -38,20 +47,20 @@ public class UDPClient {
             bufferSize = normalBufferSize;
     }
 
-    public void work(int normalBufferSize){
+    public void work(int normalBufferSize) {
         byte[] buffer = new byte[normalBufferSize];
-        try{
+        try {
             checkServerTurningOff(normalBufferSize);
             tryingConnectToTheServer(buffer);
             System.out.println("Получаю список пользователей..");
-            while(true){
+            while (true) {
                 boolean isAccepted = false;
                 while (!isAccepted)
                     try {
                         datagramPacket = new DatagramPacket(buffer, buffer.length);
                         datagramSocket.receive(datagramPacket);
                         isAccepted = true;
-                    } catch (SocketTimeoutException e){
+                    } catch (SocketTimeoutException e) {
                         isAccepted = false;
                         System.out.println("Врем ожидания приема вышло. Выполняется повторный запрос.");
                         tryingConnectToTheServer(buffer);
@@ -69,8 +78,7 @@ public class UDPClient {
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             datagramSocket.close();
         }
 
@@ -87,14 +95,9 @@ public class UDPClient {
         System.out.println("Запрос отправлен!\n");
     }
 
-    private void clearBuffer(byte[] buffer){
+    private void clearBuffer(byte[] buffer) {
         for (int i = 0; i < buffer.length; i++) {
             buffer[i] = 0;
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-        UDPClient udpClient = new UDPClient(InetAddress.getLocalHost(), 1502);
-        udpClient.work(256);
     }
 }

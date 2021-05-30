@@ -1,9 +1,7 @@
 package com.example.parsers.parsers;
 
-import com.example.parsers.parsers.parser.DomParser;
 import com.example.parsers.parsers.parser.IValidator;
 import com.example.parsers.parsers.parser.SaxParser;
-import com.example.parsers.parsers.parser.XMLInputParser;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;

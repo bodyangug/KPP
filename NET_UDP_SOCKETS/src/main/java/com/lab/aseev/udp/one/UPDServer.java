@@ -16,7 +16,7 @@ public class UPDServer {
     private int userPort = -1;
     private boolean isServerWork = true;
 
-    public UPDServer(int serverPort){
+    public UPDServer(int serverPort) {
         try {
             this.datagramSocket = new DatagramSocket(serverPort);
         } catch (SocketException e) {
@@ -25,8 +25,13 @@ public class UPDServer {
         this.activeUsersList = new ActiveUsers();
     }
 
-    public void startServer(int bufferSize){
-        try{
+    public static void main(String[] args) throws Exception {
+        UPDServer updServer = new UPDServer(1502);
+        updServer.startServer(256);
+    }
+
+    public void startServer(int bufferSize) {
+        try {
             System.out.println("Сервер запущен...\n");
 
             while (isServerWork) {
@@ -41,7 +46,7 @@ public class UPDServer {
         }
     }
 
-    public void getUserData(int bufferSize) throws IOException{
+    public void getUserData(int bufferSize) throws IOException {
         byte[] buffer = new byte[bufferSize];
         datagramPacket = new DatagramPacket(buffer, buffer.length);
 
@@ -63,23 +68,22 @@ public class UPDServer {
         if (activeUsersList.isEmpty() || !activeUsersList.isUserRegistered(user)) {
             activeUsersList.registerUser(user);
             System.out.println(getUserInfo(user) + " зарегестрирован!");
-        }
-        else
+        } else
             System.out.println(getUserInfo(user) + " уже есть в базе!");
 
         clearBuffer(buffer);
     }
 
-    private void clearBuffer(byte[] buffer){
+    private void clearBuffer(byte[] buffer) {
         for (int i = 0; i < buffer.length; i++)
             buffer[i] = 0;
     }
 
     private String getUserInfo(User user) {
-        return  "Пользователь " + user.getAddress().getHostAddress() + " с портом: " + user.getPort();
+        return "Пользователь " + user.getAddress().getHostAddress() + " с портом: " + user.getPort();
     }
 
-    private void sendUserData() throws IOException{
+    private void sendUserData() throws IOException {
         byte[] buffer;
         System.out.print("Посилаю ответ...");
         for (int i = 0; i < activeUsersList.getUsersCount(); i++) {
@@ -95,10 +99,5 @@ public class UPDServer {
         datagramPacket = new DatagramPacket(buffer, 0, address, userPort);
         datagramSocket.send(datagramPacket);
         System.out.println(" Ответ отправлен!\n");
-    }
-
-    public static void main(String[] args) throws Exception{
-        UPDServer updServer = new UPDServer(1502);
-        updServer.startServer(256);
     }
 }

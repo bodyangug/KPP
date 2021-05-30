@@ -12,12 +12,17 @@ public class MainFrame extends JFrame {
     private JPanel downButtonsPanel;
     private JFileChooser fileChooser;
 
-    public MainFrame(){
+    public MainFrame() {
         initMainFrame();
         initMainFrameComponents();
     }
 
-    public void initMainFrame(){
+    public static void main(String[] args) {
+        MainFrame mainFrame = new MainFrame();
+        mainFrame.setVisible(true);
+    }
+
+    public void initMainFrame() {
         setTitle("Лаба 6,7");
         setLayout(new BorderLayout());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -26,7 +31,7 @@ public class MainFrame extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    public void initMainFrameComponents(){
+    public void initMainFrameComponents() {
         JPanel panelWithGraphAndTable = new JPanel(new GridLayout(0, 2));
 
         dataSheet = new DataSheet();
@@ -81,13 +86,13 @@ public class MainFrame extends JFrame {
         });
     }
 
-    private void updateDataSheet(){
+    private void updateDataSheet() {
         dataSheetTable.getTableModel().setDataSheet(dataSheet);
         dataSheetTable.revalidate();
         dataSheetGraph.setDataSheet(dataSheet);
     }
 
-    private void initClearButton(){
+    private void initClearButton() {
         JButton clearButton = new JButton("Clear");
         downButtonsPanel.add(clearButton);
 
@@ -101,14 +106,14 @@ public class MainFrame extends JFrame {
         });
     }
 
-    private void initSaveButton(){
+    private void initSaveButton() {
         JButton saveButton = new JButton("Save");
         downButtonsPanel.add(saveButton);
 
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (JFileChooser.APPROVE_OPTION == fileChooser.showSaveDialog(null)){
+                if (JFileChooser.APPROVE_OPTION == fileChooser.showSaveDialog(null)) {
                     String fileName = fileChooser.getSelectedFile().getPath();
                     XMLParser.parseDataSheetToXML(dataSheet, fileName);
                     JOptionPane.showMessageDialog(null, fileName.trim() + " saved!", "Результаты сохранены", JOptionPane.INFORMATION_MESSAGE);
@@ -117,7 +122,7 @@ public class MainFrame extends JFrame {
         });
     }
 
-    private void initExitButton(){
+    private void initExitButton() {
         JButton exitButton = new JButton("Exit");
         downButtonsPanel.add(exitButton);
 
@@ -127,10 +132,5 @@ public class MainFrame extends JFrame {
                 dispose();
             }
         });
-    }
-
-    public static void main(String[] args) {
-        MainFrame mainFrame = new MainFrame();
-        mainFrame.setVisible(true);
     }
 }

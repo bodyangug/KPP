@@ -3,32 +3,32 @@ package com.lab.aseev.udp.one;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ActiveUsers implements Serializable{
+public class ActiveUsers implements Serializable {
     private static final long serialVersionUID = 1;
 
     private ArrayList<User> registeredUsers;
 
-    public ActiveUsers(){
+    public ActiveUsers() {
         registeredUsers = new ArrayList<>();
     }
 
-    public void registerUser(User user){
+    public void registerUser(User user) {
         registeredUsers.add(user);
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return registeredUsers.isEmpty();
     }
 
-    public int getUsersCount(){
+    public int getUsersCount() {
         return registeredUsers.size();
     }
 
-    public boolean isUserRegistered(User user){
+    public boolean isUserRegistered(User user) {
         boolean isRegistered = false;
 
-        for (User userFromList: registeredUsers)
-            if (userFromList.equals(user)){
+        for (User userFromList : registeredUsers)
+            if (userFromList.equals(user)) {
                 isRegistered = true;
                 break;
             }
@@ -36,14 +36,14 @@ public class ActiveUsers implements Serializable{
         return isRegistered;
     }
 
-    public User getUser(int pos){
+    public User getUser(int pos) {
         return registeredUsers.get(pos);
     }
 
-    public String toString(){
+    public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         int i = 0;
-        for (User user: registeredUsers)
+        for (User user : registeredUsers)
             stringBuilder.append("\t").append(++i).append(") ").append(user.toString()).append("\n");
 
         return stringBuilder.toString();

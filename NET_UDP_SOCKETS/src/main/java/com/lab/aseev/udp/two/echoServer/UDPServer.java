@@ -16,9 +16,11 @@ public abstract class UDPServer implements Runnable {
         this.bufferSize = bufferSize;
         this.port = port;
     }
+
     public UDPServer(int port) {
         this(port, 8192);
     }
+
     public UDPServer() {
         this(12345, 8192);
     }
@@ -47,9 +49,11 @@ public abstract class UDPServer implements Runnable {
             System.err.println("Could not bind to port: " + port + "\n" + ex);
         }
     }
+
     public void shutDown() {
         this.isShutDown = true;
     }
+
     public abstract void respond(DatagramSocket socket, DatagramPacket request)
             throws IOException;
 }

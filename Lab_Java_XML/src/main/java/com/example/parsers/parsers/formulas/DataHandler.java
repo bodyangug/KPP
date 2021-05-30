@@ -7,10 +7,10 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class DataHandler extends DefaultHandler {
 
+    private final Repo repo;
     private boolean date = false;
     private boolean x = false;
     private boolean y = false;
-    private final Repo repo;
 
     public DataHandler(Repo repo) {
         this.repo = repo;

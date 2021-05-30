@@ -9,14 +9,14 @@ import java.util.Scanner;
 
 public class MulticastSenderReceiver {
     private final String name;
-    private InetAddress address;
     private final int port = 3456;
+    private InetAddress address;
     private MulticastSocket group;
 
     MulticastSenderReceiver(String name) {
         this.name = name;
-        System.out.println("name = "+name);
-        try{
+        System.out.println("name = " + name);
+        try {
             address = InetAddress.getByName("224.0.0.1");
             group = new MulticastSocket(port);
             new Receiver().start();
@@ -26,38 +26,42 @@ public class MulticastSenderReceiver {
         }
     }
 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String name = sc.nextLine();
+
+        new MulticastSenderReceiver(name);
+    }
+
     private class Sender extends Thread {
         @Override
         public void run() {
-            try{
+            try {
                 BufferedReader fromUser = new BufferedReader(new InputStreamReader(System.in));
-                while(true) {
-                    String message = name + ": "+fromUser.readLine();
+                while (true) {
+                    String message = name + ": " + fromUser.readLine();
                     byte[] out = message.getBytes();
                     DatagramPacket packet = new DatagramPacket(out, out.length, address, port);
                     group.send(packet);
                 }
-            } catch (Exception ignored){}
+            } catch (Exception ignored) {
+            }
         }
     }
-    private class Receiver extends Thread{
+
+    private class Receiver extends Thread {
         @Override
         public void run() {
             try {
                 byte[] in = new byte[256];
                 DatagramPacket packet = new DatagramPacket(in, in.length);
                 group.joinGroup(address);
-                while(true) {
+                while (true) {
                     group.receive(packet);
-                    System.out.println(new String(packet.getData(), 0,packet.getLength()));
+                    System.out.println(new String(packet.getData(), 0, packet.getLength()));
                 }
-            } catch (Exception ignored){}
+            } catch (Exception ignored) {
+            }
         }
-    }
-    public static void main(String[] args) {
-       Scanner sc = new Scanner(System.in);
-       String name = sc.nextLine();
-
-       new MulticastSenderReceiver(name);
     }
 }

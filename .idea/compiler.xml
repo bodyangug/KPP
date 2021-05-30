@@ -19,6 +19,7 @@
     <bytecodeTargetLevel>
       <module name="Lab_3" target="8" />
       <module name="Lab_XML" target="8" />
+      <module name="RMI" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

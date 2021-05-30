@@ -10,20 +10,6 @@ public class FFunction implements Evaluatable {
         this.a = a;
     }
 
-    @Override
-    public double evalf(double x) {
-        // TODO Auto-generated method stub
-        return Math.exp(x * x) * Math.sin(x);
-    }
-
-    public double getA() {
-        return a;
-    }
-
-    public void setA(double a) {
-        this.a = a;
-    }
-
     public static void main(String[] args) {
         System.out.println("FFunction check");
 
@@ -57,5 +43,18 @@ public class FFunction implements Evaluatable {
 
         }
 
+    }
+
+    @Override
+    public double evalf(double x) {
+        return Math.exp(x * x) * Math.sin(x);
+    }
+
+    public double getA() {
+        return a;
+    }
+
+    public void setA(double a) {
+        this.a = a;
     }
 }

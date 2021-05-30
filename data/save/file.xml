@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="Windows-1251" standalone="yes"?>
+<notebook>
+    <person>
+        <name first="Иван" second="Иванович" surname="Иванов"/>
+        <birthday>12.12.2001</birthday>
+    </person>
+</notebook>

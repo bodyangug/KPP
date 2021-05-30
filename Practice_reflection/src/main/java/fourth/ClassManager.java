@@ -126,6 +126,7 @@ public class ClassManager {
         classObject = createObject(cls);
         System.out.println("Объект успешно создан!");
     }
+
     public Object getObject() {
         return classObject;
     }

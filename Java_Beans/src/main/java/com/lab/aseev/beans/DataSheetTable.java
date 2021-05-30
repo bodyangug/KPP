@@ -4,32 +4,32 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
-public class DataSheetTable extends JPanel{
+public class DataSheetTable extends JPanel {
     private JPanel panelWithButtons;
     private JButton deleteButton;
     private JScrollPane scrollPane;
     private JTable dataTable;
     private DataSheetTableModel dataSheetTableModel;
 
-    public DataSheetTable(DataSheet dataSheet){
+    public DataSheetTable(DataSheet dataSheet) {
         initDataSheetPanel();
         initDataSheetTable(dataSheet);
         initScrollPane();
         initPanelWithButtons();
     }
 
-    private void initDataSheetPanel(){
+    private void initDataSheetPanel() {
         setLayout(new BorderLayout());
     }
 
-    private void initScrollPane(){
+    private void initScrollPane() {
         scrollPane = new JScrollPane(dataTable);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         add(scrollPane);
     }
 
-    private void initPanelWithButtons(){
+    private void initPanelWithButtons() {
         panelWithButtons = new JPanel(new FlowLayout(FlowLayout.CENTER, 25, 10));
         add(panelWithButtons, BorderLayout.SOUTH);
 
@@ -37,7 +37,7 @@ public class DataSheetTable extends JPanel{
         initDeleteButton();
     }
 
-    private void initAddButton(){
+    private void initAddButton() {
         JButton addButton = new JButton("Add (+)");
         panelWithButtons.add(addButton);
         Random r = new Random();
@@ -59,7 +59,7 @@ public class DataSheetTable extends JPanel{
         });
     }
 
-    private Data getRandomData(){  //координаты случайных точек
+    private Data getRandomData() {  //координаты случайных точек
         Random random = new Random();
         String date = "17.09.1996";
         double x = random.nextDouble() * 5;
@@ -88,23 +88,23 @@ public class DataSheetTable extends JPanel{
         });
     }
 
-    private void initDataSheetTable(DataSheet dataSheet){  //присоединяем к таблице ее модель
+    private void initDataSheetTable(DataSheet dataSheet) {  //присоединяем к таблице ее модель
         dataTable = new JTable();
         dataSheetTableModel = new DataSheetTableModel(dataSheet);
         dataTable.setModel(dataSheetTableModel);
     }
 
+    public DataSheetTableModel getTableModel() {
+        return dataSheetTableModel;
+    }
+
     // Public methods
-    public void setTableModel(DataSheetTableModel dataSheetTableModel){  //методы доступа к модели таблицы
+    public void setTableModel(DataSheetTableModel dataSheetTableModel) {  //методы доступа к модели таблицы
         this.dataSheetTableModel = dataSheetTableModel;
         revalidate();
     }
 
-    public DataSheetTableModel getTableModel(){
-        return dataSheetTableModel;
-    }
-
-    public void revalidate(){  //метод обновления таблицы
+    public void revalidate() {  //метод обновления таблицы
         if (dataTable != null)
             dataTable.revalidate();
     }

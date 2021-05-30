@@ -3,26 +3,24 @@ package com.lab.aseev.beans;
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 
-public class DataSheetTableModel extends AbstractTableModel{ //наследует расширяющий класс
+public class DataSheetTableModel extends AbstractTableModel { //наследует расширяющий класс
     private static final long serialVersionUID = 1L;
-
-    private ArrayList <DataSheetChangeListener> listenersList = new ArrayList<>();
-    private DataSheetChangeEvent event = new DataSheetChangeEvent(this);
-
     private static final int columnCount = 3;
+    String[] columnNames = {"Date", "X Value", "Y Value"};
+    private ArrayList<DataSheetChangeListener> listenersList = new ArrayList<>();
+    private DataSheetChangeEvent event = new DataSheetChangeEvent(this);
     private int rowCount = 1;
     private DataSheet dataSheet;
-    String [] columnNames = {"Date", "X Value", "Y Value"};
 
-    public DataSheetTableModel(DataSheet dataSheet){
+    public DataSheetTableModel(DataSheet dataSheet) {
         setDataSheet(dataSheet);
     }
 
-    public DataSheet getDataSheet(){
+    public DataSheet getDataSheet() {
         return dataSheet;
     }
 
-    public void setDataSheet(DataSheet newDataSheet){
+    public void setDataSheet(DataSheet newDataSheet) {
         dataSheet = newDataSheet;
         rowCount = dataSheet.dataCount();
         fireDataSheetChanges();
@@ -33,29 +31,34 @@ public class DataSheetTableModel extends AbstractTableModel{ //наследуе�
         return rowCount;
     }
 
+    public void setRowCount(int rowCount) {
+        if (rowCount > 0)
+            this.rowCount = rowCount;
+    }
+
     @Override
     public int getColumnCount() {
         return columnCount;
     }
 
     @Override
-    public String getColumnName(int column){
+    public String getColumnName(int column) {
         return columnNames[column];
     }
 
     @Override
-    public boolean isCellEditable(int rowIndex, int columnIndex){
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
         return columnIndex >= 0;
     }
 
-    public void setValueAt(Object value, int rowIndex, int columnIndex){
-        try{
+    public void setValueAt(Object value, int rowIndex, int columnIndex) {
+        try {
             double d;
             String stringValue = (String) value;
-            if (dataSheet != null){
+            if (dataSheet != null) {
                 if (columnIndex == 0)
                     dataSheet.getDataItem(rowIndex).setDate(stringValue);
-                else if (columnIndex == 1){
+                else if (columnIndex == 1) {
                     double x = Double.parseDouble(stringValue);
                     dataSheet.getDataItem(rowIndex).setX(x);
                 } else {
@@ -64,17 +67,18 @@ public class DataSheetTableModel extends AbstractTableModel{ //наследуе�
                 }
             }
             fireDataSheetChanges();
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Не удалось измениь значение");
         }
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        if (dataSheet != null){
+        if (dataSheet != null) {
             Data dataItem = dataSheet.getDataItem(rowIndex);
-            switch (columnIndex){
-                case 0: return dataItem.getDate();
+            switch (columnIndex) {
+                case 0:
+                    return dataItem.getDate();
                 case 1:
                     if (dataItem.getX() == 0 && dataSheet.dataCount() == 1)
                         return "";
@@ -91,25 +95,20 @@ public class DataSheetTableModel extends AbstractTableModel{ //наследуе�
         return null;
     }
 
-    public void setRowCount(int rowCount){
-        if (rowCount > 0)
-            this.rowCount = rowCount;
-    }
-
-    public void removeDataSheetChangeListener(DataSheetChangeListener listener){
+    public void removeDataSheetChangeListener(DataSheetChangeListener listener) {
         listenersList.remove(listener);
     }
 
-    public void addDataSheetChangeListener(DataSheetChangeListener listener){
+    public void addDataSheetChangeListener(DataSheetChangeListener listener) {
         listenersList.add(listener);
     }
 
-    protected void fireDataSheetChanges(){
+    protected void fireDataSheetChanges() {
         for (DataSheetChangeListener aListenersList : listenersList)
             (aListenersList).dataChange(event);
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return dataSheet.dataCount() == 1 && dataSheet.getDataItem(0).getDate().equals("");
     }
 }

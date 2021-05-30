@@ -1,6 +1,5 @@
 package com.university.interpolation.impl;
 
-import com.university.interpolation.Interpolator;
 import com.university.point.impl.Point2D;
 
 import java.util.Arrays;

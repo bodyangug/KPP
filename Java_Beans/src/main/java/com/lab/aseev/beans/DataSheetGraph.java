@@ -14,7 +14,7 @@ public class DataSheetGraph extends JPanel {
     private int deltaY;
     private Color color;
 
-    public DataSheetGraph(DataSheet dataSheet){
+    public DataSheetGraph(DataSheet dataSheet) {
         isConnected = false;
         deltaX = 5;
         deltaY = 5;
@@ -23,9 +23,9 @@ public class DataSheetGraph extends JPanel {
         this.dataSheet = dataSheet;
     }
 
-    private double calculateMinX(){
+    private double calculateMinX() {
         double result = 100000;
-        for (Data data : dataSheet.getDataArray()){
+        for (Data data : dataSheet.getDataArray()) {
             if (data.getX() < result)
                 result = data.getX();
         }
@@ -33,9 +33,9 @@ public class DataSheetGraph extends JPanel {
         return result;
     }
 
-    private double calculateMaxX(){
+    private double calculateMaxX() {
         double result = 0;
-        for (Data data : dataSheet.getDataArray()){
+        for (Data data : dataSheet.getDataArray()) {
             if (data.getX() > result)
                 result = data.getX();
         }
@@ -43,9 +43,9 @@ public class DataSheetGraph extends JPanel {
         return result;
     }
 
-    private double calculateMinY(){
+    private double calculateMinY() {
         double result = 100000;
-        for (Data data : dataSheet.getDataArray()){
+        for (Data data : dataSheet.getDataArray()) {
             if (data.getY() < result)
                 result = data.getY();
         }
@@ -53,9 +53,9 @@ public class DataSheetGraph extends JPanel {
         return result;
     }
 
-    private double calculateMaxY(){
+    private double calculateMaxY() {
         double result = 0;
-        for (Data data : dataSheet.getDataArray()){
+        for (Data data : dataSheet.getDataArray()) {
             if (data.getY() > result)
                 result = data.getY();
         }
@@ -64,62 +64,62 @@ public class DataSheetGraph extends JPanel {
     }
 
 
-    public DataSheet getDataSheet(){
+    public DataSheet getDataSheet() {
         return dataSheet;
     }
 
-    public void setDataSheet(DataSheet dataSheet){
+    public void setDataSheet(DataSheet dataSheet) {
         this.dataSheet = dataSheet;
     }
 
-    public boolean isConnected(){
+    public boolean isConnected() {
         return isConnected;
     }
 
-    public void setConnected(boolean isConnected){
+    public void setConnected(boolean isConnected) {
         this.isConnected = isConnected;
         repaint();
     }
 
-    public int getDeltaX(){
+    public int getDeltaX() {
         return deltaX;
     }
 
-    public int getDeltaY(){
-        return deltaY;
-    }
-
-    public void setDeltaX(int deltaX){
+    public void setDeltaX(int deltaX) {
         this.deltaX = deltaX;
     }
 
-    public void setDeltaY(int deltaY){
+    public int getDeltaY() {
+        return deltaY;
+    }
+
+    public void setDeltaY(int deltaY) {
         this.deltaY = deltaY;
     }
 
-    public Color getColor(){
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(Color color){
+    public void setColor(Color color) {
         this.color = color;
     }
 
     @Override
-    protected void paintComponent(Graphics g){
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics2D = (Graphics2D) g;
         showGraph(graphics2D);
     }
 
-    public void showGraph(Graphics2D graphics2D){
+    public void showGraph(Graphics2D graphics2D) {
         double xMin = calculateMinX() - deltaX;
-        double yMin = calculateMinY() - 2*deltaY;
+        double yMin = calculateMinY() - 2 * deltaY;
         double xMax = calculateMaxX() + deltaX;
         double yMax = calculateMaxY() + deltaY;
         double width = getWidth();
         double height = getHeight();
-        double xScale = 2*width / (xMax - xMin);
+        double xScale = 2 * width / (xMax - xMin);
         double yScale = xScale;
         System.out.println("in");
 
@@ -138,38 +138,38 @@ public class DataSheetGraph extends JPanel {
         graphics2D.setFont(new Font("Serif", Font.BOLD, 14));
 
         double xStep = 1;
-        for (double dx = xStep; dx < width; dx += xStep){
-            double x = x0 + dx*xScale;
+        for (double dx = xStep; dx < width; dx += xStep) {
+            double x = x0 + dx * xScale;
             graphics2D.setPaint(Color.BLACK);
             graphics2D.draw(new Line2D.Double(x, 0, x, height));
             graphics2D.setPaint(Color.BLACK);
-            graphics2D.drawString((int)(Math.round(dx/xStep)*xStep) + "", (int) x + 2, 15);
+            graphics2D.drawString((int) (Math.round(dx / xStep) * xStep) + "", (int) x + 2, 15);
         }
 
 
         double yStep = 1;
-        for (double dy = yStep; dy < height; dy += yStep){
-            double y = y0 - dy*yScale;
+        for (double dy = yStep; dy < height; dy += yStep) {
+            double y = y0 - dy * yScale;
             graphics2D.setPaint(Color.WHITE);
             graphics2D.draw(new Line2D.Double(0, y, width, y));
             graphics2D.setPaint(Color.BLACK);
-            graphics2D.drawString((int)(Math.round(dy/yStep)*yStep) + "", 2, (int)y - 2);
+            graphics2D.drawString((int) (Math.round(dy / yStep) * yStep) + "", 2, (int) y - 2);
         }
 
         graphics2D.setPaint(Color.BLACK);
         graphics2D.setStroke(new BasicStroke(3.0f));
         graphics2D.draw(new Line2D.Double(x0, 0, x0, height));
         graphics2D.draw(new Line2D.Double(0, y0, width, y0));
-        graphics2D.drawString("X", (int)width - 10, (int)y0 - 2);
-        graphics2D.drawString("Y", (int)x0 + 2, 10);
+        graphics2D.drawString("X", (int) width - 10, (int) y0 - 2);
+        graphics2D.drawString("Y", (int) x0 + 2, 10);
 
-        if (dataSheet != null){
-            if (!isConnected){
-                for (Data data : dataSheet.getDataArray()){
-                    double x = x0 + data.getX()*xScale;
-                    double y = y0 - data.getY()*yScale;
+        if (dataSheet != null) {
+            if (!isConnected) {
+                for (Data data : dataSheet.getDataArray()) {
+                    double x = x0 + data.getX() * xScale;
+                    double y = y0 - data.getY() * yScale;
                     graphics2D.setColor(Color.WHITE);
-                    graphics2D.fillOval((int)(x - 5 / 2), (int) (y - 5 / 2), 10, 10); //??? x - 5 / 2
+                    graphics2D.fillOval((int) (x - 5 / 2), (int) (y - 5 / 2), 10, 10); //??? x - 5 / 2
                     graphics2D.setColor(color);
                     graphics2D.fillOval((int) (x - 5 / 2), (int) (y - 5 / 2), 10, 10);
                 }
@@ -179,10 +179,10 @@ public class DataSheetGraph extends JPanel {
                 double xOld = x0 + dataSheet.getDataItem(0).getX() * xScale;
                 double yOld = y0 - dataSheet.getDataItem(0).getY() * yScale;
 
-                for (Data data : dataSheet.getDataArray()){
-                    double x = x0 + data.getX()*xScale;
-                    double y = y0 - data.getY()*yScale;
-                    graphics2D.draw(new Line2D.Double(xOld, yOld, (double)x, y));
+                for (Data data : dataSheet.getDataArray()) {
+                    double x = x0 + data.getX() * xScale;
+                    double y = y0 - data.getY() * yScale;
+                    graphics2D.draw(new Line2D.Double(xOld, yOld, (double) x, y));
                     xOld = x;
                     yOld = y;
                 }
