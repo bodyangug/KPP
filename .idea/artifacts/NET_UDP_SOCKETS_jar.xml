@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="NET_UDP_SOCKETS:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/NET_UDP_SOCKETS_jar</output-path>
+    <root id="archive" name="NET_UDP_SOCKETS.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/NET_UDP_SOCKETS/src/main/java/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="NET_UDP_SOCKETS" />
+    </root>
+  </artifact>
+</component>
